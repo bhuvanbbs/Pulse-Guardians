@@ -4,8 +4,8 @@ const chatBox = document.getElementById('chat-box');
 const chatForm = document.getElementById('chat-form');
 const userInput = document.getElementById('user-input');
 
-const HUGGING_FACE_API_KEY = "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"; // Your provided API key
-const MODEL = "mistralai/Mistral-7B-Instruct-v0.1"; // Instruction-following model
+const PAWAN_API_KEY = "pk-NbUjiNvMCqsXBrDsElltVlskjLkWaWhfeonwAvixkVFIBxtw"; // Your updated Pawan AI key
+const API_URL = "https://api.pawan.krd/api/v1/chat/completions";
 
 setTimeout(() => {
     document.getElementById('creator').style.opacity = 1;
@@ -40,26 +40,23 @@ function appendMessage(text, className) {
 
 async function getBotResponse(message) {
     try {
-        const response = await fetch(`https://api-inference.huggingface.co/models/${MODEL}`, {
+        const response = await fetch(API_URL, {
             method: "POST",
             headers: {
-                "Authorization": `Bearer ${HUGGING_FACE_API_KEY}`,
+                "Authorization": `Bearer ${PAWAN_API_KEY}`,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                inputs: "You are a health assistant. Answer this: " + message,
-                parameters: {
-                    max_new_tokens: 150
-                }
+                model: "gpt",
+                messages: [{ role: "user", content: message }]
             })
         });
 
         const data = await response.json();
-        if (data && data.generated_text) {
-            return data.generated_text;
-        } else if (Array.isArray(data) && data.length > 0 && data[0].generated_text) {
-            return data[0].generated_text;
+        if (data && data.choices && data.choices.length > 0) {
+            return data.choices[0].message.content;
         } else {
+            console.error("Unexpected response format:", data);
             return "Sorry, I couldn't process that.";
         }
     } catch (error) {
