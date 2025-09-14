@@ -11,7 +11,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100%;
-    background: linear-gradient(135deg, #2980b9, #6dd5fa);
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6); /* Darker blue gradient for contrast */
     color: white;
     text-align: center;
     animation: fadeIn 1s ease forwards;
@@ -27,7 +27,7 @@ body {
     animation: highlight 1s 1.5s forwards;
 }
 .animation-screen h2 span {
-    color: #f39c12;
+    color: #FFD700; /* Bright yellow */
     font-weight: bold;
     font-family: 'Courier New', monospace;
 }
@@ -61,11 +61,11 @@ body {
 }
 .user-message {
     text-align: right;
-    color: #2980b9;
+    color: #1e3a8a;
 }
 .bot-message {
     text-align: left;
-    color: #27ae60;
+    color: #16a34a;
 }
 form {
     display: flex;
@@ -80,14 +80,14 @@ input[type="text"] {
 button {
     padding: 10px 20px;
     border: none;
-    background: #2980b9;
+    background: #1e3a8a;
     color: #fff;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
     transition: background 0.3s ease;
 }
 button:hover {
-    background: #3498db;
+    background: #2563eb;
 }
 @keyframes fadeIn {
     from { opacity: 0; }

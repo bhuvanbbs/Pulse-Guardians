@@ -4,8 +4,8 @@ const chatBox = document.getElementById('chat-box');
 const chatForm = document.getElementById('chat-form');
 const userInput = document.getElementById('user-input');
 
-const HUGGING_FACE_API_KEY = "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"; // Replace this with your API key
-const MODEL = "gpt2"; // Example model
+const HUGGING_FACE_API_KEY = "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"; // Your provided API key
+const MODEL = "mistralai/Mistral-7B-Instruct-v0.1"; // Instruction-following model
 
 setTimeout(() => {
     document.getElementById('creator').style.opacity = 1;
@@ -47,12 +47,17 @@ async function getBotResponse(message) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                inputs: message
+                inputs: "You are a health assistant. Answer this: " + message,
+                parameters: {
+                    max_new_tokens: 150
+                }
             })
         });
 
         const data = await response.json();
-        if (data && data.length > 0 && data[0].generated_text) {
+        if (data && data.generated_text) {
+            return data.generated_text;
+        } else if (Array.isArray(data) && data.length > 0 && data[0].generated_text) {
             return data[0].generated_text;
         } else {
             return "Sorry, I couldn't process that.";
