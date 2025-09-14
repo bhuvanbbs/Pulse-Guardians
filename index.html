@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Pulse Guardians</title>
-    <link rel="stylesheet" href="styles.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pulse Guardians</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="animation-screen" class="animation-screen">
+    <div id="splash-screen">
         <h1 id="title">Pulse Guardians</h1>
-        <h2 id="creator">Created by <span>Yuvaraj M</span></h2>
     </div>
 
-    <div id="chat-screen" class="chat-screen hidden">
-        <div class="container">
-            <div class="chat-box" id="chat-box"></div>
-            <form id="chat-form">
-                <input type="text" id="user-input" placeholder="Ask about diseases, symptoms..." required />
-                <button type="submit">Send</button>
-            </form>
-        </div>
+    <div id="credits" class="hidden">
+        Made by <span id="author">Yuvaraj M</span>
+    </div>
+
+    <div id="chat-container" class="hidden">
+        <h2>Public Health Chatbot</h2>
+        <div id="chat-box"></div>
+        <input type="text" id="user-input" placeholder="Ask about a disease..."/>
+        <button onclick="sendMessage()">Send</button>
     </div>
 
     <script src="script.js"></script>
