@@ -7,18 +7,21 @@
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <div class="container">
-        <h1>Pulse Guardians</h1>
-        <p class="creator">Made by Yuvaraj M</p>
-        <p class="description">AI-Driven Public Health Chatbot for Disease Awareness</p>
-
-        <div class="chat-box" id="chat-box"></div>
-
-        <form id="chat-form">
-            <input type="text" id="user-input" placeholder="Ask about diseases, symptoms..." required />
-            <button type="submit">Send</button>
-        </form>
+    <div id="animation-screen" class="animation-screen">
+        <h1 id="title">Pulse Guardians</h1>
+        <h2 id="creator">Created by <span>Yuvaraj M</span></h2>
     </div>
+
+    <div id="chat-screen" class="chat-screen hidden">
+        <div class="container">
+            <div class="chat-box" id="chat-box"></div>
+            <form id="chat-form">
+                <input type="text" id="user-input" placeholder="Ask about diseases, symptoms..." required />
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>

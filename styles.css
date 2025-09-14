@@ -1,11 +1,44 @@
 body {
+    margin: 0;
     font-family: Arial, sans-serif;
     background: #f4f7f8;
+    height: 100vh;
+    overflow: hidden;
+}
+.animation-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background: linear-gradient(135deg, #2980b9, #6dd5fa);
+    color: white;
+    text-align: center;
+    animation: fadeIn 1s ease forwards;
+}
+.animation-screen h1 {
+    font-size: 3rem;
+    animation: slideIn 1s ease forwards;
+}
+.animation-screen h2 {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    opacity: 0;
+    animation: highlight 1s 1.5s forwards;
+}
+.animation-screen h2 span {
+    color: #f39c12;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+}
+.chat-screen {
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+}
+.hidden {
+    display: none;
 }
 .container {
     width: 100%;
@@ -15,22 +48,13 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
-h1 {
-    text-align: center;
-    color: #2c3e50;
-}
-.creator, .description {
-    text-align: center;
-    font-size: 0.9rem;
-    color: #7f8c8d;
-}
 .chat-box {
     height: 400px;
     overflow-y: auto;
     background: #ecf0f1;
     padding: 10px;
     border-radius: 5px;
-    margin-top: 15px;
+    margin-bottom: 15px;
 }
 .message {
     margin: 10px 0;
@@ -45,7 +69,6 @@ h1 {
 }
 form {
     display: flex;
-    margin-top: 15px;
 }
 input[type="text"] {
     flex: 1;
@@ -65,4 +88,16 @@ button {
 }
 button:hover {
     background: #3498db;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+@keyframes highlight {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }

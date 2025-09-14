@@ -1,8 +1,24 @@
+const animationScreen = document.getElementById('animation-screen');
+const chatScreen = document.getElementById('chat-screen');
 const chatBox = document.getElementById('chat-box');
 const chatForm = document.getElementById('chat-form');
 const userInput = document.getElementById('user-input');
 
-const OPENAI_API_KEY = "sk-ijklmnopuvwx1234ijklmnopuvwx1234ijklmnop"; // Replace this with your API key
+const HUGGING_FACE_API_KEY = "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"; // Replace this with your API key
+const MODEL = "gpt2"; // Example model
+
+setTimeout(() => {
+    document.getElementById('creator').style.opacity = 1;
+}, 1500);
+
+setTimeout(() => {
+    animationScreen.style.opacity = 0;
+    animationScreen.style.transition = "opacity 1s ease";
+    setTimeout(() => {
+        animationScreen.style.display = "none";
+        chatScreen.classList.remove('hidden');
+    }, 1000);
+}, 3500);
 
 chatForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -24,26 +40,22 @@ function appendMessage(text, className) {
 
 async function getBotResponse(message) {
     try {
-        const response = await fetch('https://api.openai.com/v1/chat/completions', {
-            method: 'POST',
+        const response = await fetch(`https://api-inference.huggingface.co/models/${MODEL}`, {
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${OPENAI_API_KEY}`
+                "Authorization": `Bearer ${HUGGING_FACE_API_KEY}`,
+                "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                model: "gpt-3.5-turbo",
-                messages: [
-                    { role: "system", content: "You are a helpful assistant providing disease awareness and health advice." },
-                    { role: "user", content: message }
-                ],
-                max_tokens: 150
+                inputs: message
             })
         });
+
         const data = await response.json();
-        if (data.choices && data.choices.length > 0) {
-            return data.choices[0].message.content;
+        if (data && data.length > 0 && data[0].generated_text) {
+            return data[0].generated_text;
         } else {
-            return "Sorry, I couldn't find information on that.";
+            return "Sorry, I couldn't process that.";
         }
     } catch (error) {
         console.error(error);
